@@ -2,3 +2,5 @@ This project is not working yet. I'm trying to find the best way of structuring 
 
 Don't mind the mess. As I get time I'll be fixing the code and getting them looking better and actually working!
 
+You may notice that the project is not using the public folder yet. It's using the root currently but I hope to compile the components folder contents to a build or dist folder that is publicly accessible.
+
