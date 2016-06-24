@@ -5,7 +5,58 @@
     <title>Public Index Markup</title>
 </head>
 <body>
+    TEST
     <script src="./bower_components/handlebars/handlebars.js"></script>
     <script src="/dist/templates.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular New Approach</title>
+    <link rel="stylesheet" href="server/node_modules/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="public/dist/styles.css">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+<body layout="column">
+                
+    <toolbar> </toolbar>
+    <md-content flex layout="column">
+        <ui-view flex layout="row"></ui-view>
+    </md-content>            
+    
+    <!--// #####  INCLUDE ALL JS IN ONE FILE HERE OR USE THE INLINE APPROACH-->
+    <!-- build:js dist/js/main.min.js -->
+        <!--<scripts src="public/scripts/dist/main.js"></scripts>-->
+
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        
+        <script type="text/javascript" src="./bower_components/uikit/js/uikit.min.js"></script>	
+        <script type="text/javascript" src="./bower_components/motion-ui/dist/motion-ui.min.js"></script>
+
+        <!-- Angular -->
+        <script src="server/node_modules/angular/angular.js"></script>
+        <script src="server/node_modules/angular-animate/angular-animate.js"></script>
+        <script src="server/node_modules/angular-aria/angular-aria.js"></script>
+        <script src="server/node_modules/angular-material/angular-material.js"></script>    
+        <script src="server/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+        
+        <!-- Foundation -->
+        <script src="bower_components/fastclick/lib/fastclick.js"></script>    
+        <script src="bower_components/foundation-apps/dist/js/foundation-apps.js"></script>
+        <script src="components/vendor/foundation.mod.js"></script>
+
+        <script src="components/toolbar/toolbar.dir.js"></script>
+        <script src="app.js"></script>
+
+        <!--<script src="components/profile/profile.ctr.js"></script>-->
+        <!--<script src="components/home/home.ctr.js"></script>-->
+    <!-- endbuild -->
+
+
+    
 </body>
 </html>
