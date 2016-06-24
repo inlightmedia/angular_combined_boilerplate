@@ -1,0 +1,41 @@
+<div class="uk-container-center uk-width-2-3 uk-width-large-2-3 users_table">
+	<h1 ng-init="setTitle('Manage Users')"></h1>
+
+	<section id="user-options">
+		<a href="/#users/add" class="uk-button uk-default add-user"><i class="ion-person-add"></i><span class="adduser">Add User</span></a>
+		<button class="uk-button uk-default sort-by" ng-click="orderUsersByName()"><i class="fa fa-sort icon"></i><span class="adduser">Sort By Name</span></button>
+	</section>
+
+
+	<div ng-init="getUsers()">
+		<table class="uk-table">
+			<thead>
+				<tr>
+					<th class="uk-width-4-10">ID</th>
+					<!-- <th>Username</th> -->
+					<th class="uk-width-4-10">Display Name</th>
+					<!-- <th>Email</th> -->
+					<!-- <th>Role</th> -->
+					<th class="uk-width-2-10">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="user in users | orderBy: orderUsersBy" class="{{user.id}}">
+					<!-- {{deleteClass(user.id)}} -->
+					<td>{{ user.id }}</td>
+					<!-- <td>{{ user.username }}</td> -->
+					<td>{{ user.displayName }}</td>
+					<!-- <td>{{ user.email }}</td> -->
+					<!-- <td>{{ user.admin === true || user.admin === 'true' ? 'Administrator' : 'User' }}</td> -->
+					<td>
+						<div class="button-holder">
+							<!-- <a class="uk-button uk-button-primary" href="#/users/details/{{user.id}}" ng-click="viewUser()">Details</a> -->
+							<a title="Edit User" class="uk-button uk-button-success" href="#/users/edit/{{user.id}}" ng-click="editUser()"><i class="fa fa-pencil"></i></a>
+							<button title="Delete User" id="deletr" class="uk-button uk-button-danger" ng-click="deleteUser(user)"><i class="fa fa-trash"></i></button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

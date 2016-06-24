@@ -1,0 +1,89 @@
+i.fi-dollar {
+	font-size: 1.5em;
+}
+
+i.fi-torso {
+	font-size: 1.2em;
+}
+
+i.muted {
+	opacity: 0.5;
+}
+
+i.fi-torso-business {
+	position: relative;
+	font-size: 1.2em;
+	bottom: -1px;
+}
+
+.menu-group {
+	z-index: 999;
+	/*margin-bottom: -60px;*/
+}
+
+.grid-content {
+	/* Accounts for topbar */
+	margin-top: -60px;
+}
+
+.dropdown-pane {
+
+	top: 52px !important;
+	left:auto !important;
+	right: 0px !important;
+}
+
+i {
+	margin-right: 0.5rem;
+	margin-left: 0.5rem;
+}
+table * {
+	background-color: #fff !important;
+	border-color: #fff !important;
+	/*border-color: inherit;*/
+}
+
+.footer {
+	height: 30px;
+	width: 100%;
+	background-color: #f6f6f6;
+	position: fixed;
+	bottom: 0;
+	border-top: solid 1px #d1d1d1;
+	padding: 0;
+	/*margin: 0;*/
+}
+
+.footer > .footer-container {
+	position: relative;
+	/*padding: 0 0.5rem 0 0.5rem;*/
+	margin-top: -2px;
+	font-size: 0.8rem;
+	/* Center Vertically */
+	top: 50% !important;
+	transform: translateY(-50%);
+
+	color: black;
+	float: right;
+}
+footer section {
+	border-left: solid 1px #d1d1d1;
+}
+.primary {
+	color: #D7525C;
+}
+
+.dropdown-pane a {
+	display: block;
+	margin: 0;
+	padding: 7px 0px 7px 0px;
+}
+
+html, body {
+  padding:0;
+  margin:0;
+  height:100%;
+  width:100%;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  overflow: hidden;
+}

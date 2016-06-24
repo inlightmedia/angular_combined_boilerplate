@@ -1,0 +1,26 @@
+<div ng-show="loggedUser">
+	<h1 ng-init="setTitle('Welcome!')"></h1>
+	You're In!
+</div>
+<div ng-hide="loggedUser">
+	<!-- <h1 ng-init="setTitle('Please Log In')"></h1> -->
+
+			<div class="uk-vertical-align uk-text-center uk-height-1-1 page">
+	            <div class="uk-vertical-align-middle" style="width: 250px;">
+
+	                <form class="uk-panel uk-panel-box uk-form" ng-submit="login(user)">
+	                    <div class="uk-form-row">
+	                        <input class="uk-width-1-1 uk-form-large" type="text" placeholder="Username" ng-model="user.username">
+	                    </div>
+	                    <div class="uk-form-row">
+	                        <input class="uk-width-1-1 uk-form-large" type="text" placeholder="Password" ng-model="user.password">
+	                    </div>
+	                    <div class="uk-form-row">
+	                        <button type="submit" class="uk-width-1-1 uk-button uk-button-primary uk-button-large" href="#">Login</button>
+	                    </div>	                    
+	                </form>
+
+	            </div>
+	        </div>
+
+</div>

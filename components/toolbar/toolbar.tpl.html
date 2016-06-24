@@ -1,0 +1,34 @@
+<nav class="uk-navbar uk-navbar-attached">
+	<ul class="uk-navbar-nav">
+		<li><a class="uk-navbar-brand" href="">My App</a></li>
+	</ul>
+	<div class="uk-navbar-flip" >
+		<ul class="uk-navbar-nav">
+			<!-- <li class="/#"><a href="">Dashboard</a></li> -->
+
+			<!-- <li class=""><a href="">Log In</a></li> -->
+
+			<!-- <li class=""><a href=""><i class="fa fa-bars"></i></a></li> -->
+			<li ng-show="loggedUser" class=""><a href="" data-uk-offcanvas="{target:'#my-id'}"><i class="fa fa-th-large"></i></a></li>
+			<!-- This is the container enabling the JavaScript in click mode -->
+			<li ng-show="loggedUser" class="uk-parent" data-uk-dropdown="{mode:'click'}">
+
+				<!-- This is the menu item toggling the dropdown -->
+				<a href="">
+					{{ loggedUser.displayName }}
+					<i class="fa fa-caret-down"></i>
+				</a>
+
+				<!-- This is the dropdown -->
+				<div class="uk-dropdown uk-dropdown-navbar">
+					<ul class="uk-nav uk-nav-navbar uk-dropdown-close">
+						<li><a href="/#users">Manage Users</a></li>
+						<li><a href="/#users/add">Add User</a></li>
+						<li><a ng-click="logout()" href="/#logout">Log Out</a></li>
+					</ul>
+				</div>
+
+			</li>
+		</ul>
+	</div>
+</nav>

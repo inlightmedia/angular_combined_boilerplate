@@ -1,0 +1,11 @@
+@import 'resets/basic-resets';
+
+$grey: #f7f7f7;
+
+body {
+    background: $grey;
+    display: flex;
+    align-items: center;
+    align-content: justify;
+    height: 100vh;
+}

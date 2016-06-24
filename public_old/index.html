@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>My App</title>
+
+	<!-- UI Kit Setup -->
+
+	<link rel="stylesheet" href="./bower_components/uikit/css/uikit.min.css">
+	<link rel="stylesheet" href="./bower_components/uikit/css/uikit.almost-flat.css">
+
+	<!-- <link rel="stylesheet" href="css/uikit-blue.css"> -->
+
+	<link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="./bower_components/foundation-icons/foundation_icons_general/stylesheets/general_foundicons.css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="./bower_components/motion-ui/dist/motion-ui.min.css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="./bower_components/Ionicons/css/ionicons.min.css" media="screen" title="no title" charset="utf-8">
+
+
+	<link rel="stylesheet" href="./css/style.css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+	<!-- Include Navigtion Bar -->
+	<div ng-include="'./views/partials/nav.html'"></div>
+
+	<div class="page-title" ng-cloak><h1>{{ pageTitle }}</h1></div>
+
+	<main>
+		<div class="uk-container">
+			<div class="ng-view"></div>
+		</div>
+	</main>
+
+	<!-- Include Footer -->
+	<div ng-include="'./views/partials/footer.html'"></div>
+
+	<!-- <div ng-include="./views/partials/side_bar.html"></div> -->
+
+	<!-- This is the off-canvas sidebar -->
+	<div id="my-id" class="uk-offcanvas">
+		<div class="uk-offcanvas-bar uk-offcanvas-bar-flip">
+			<h3 class="uk-panel">Section One</h3>
+			<ul class="uk-nav uk-nav-side">
+				<li><a href=""><i class="fa fa-shield"></i>One</a></li>
+				<li><a href=""><i class="fa fa-shield"></i>Two</a></li>
+				<li><a href=""><i class="fa fa-shield"></i>Three</a></li>
+				<li><a href=""><i class="fa fa-shield"></i>Four</a></li>
+				<li><a href=""><i class="fa fa-shield"></i>Five</a></li>
+			</ul>
+			<h3 class="uk-panel">Section Two</h3>
+			<ul class="uk-nav uk-nav-side">
+				<li><a href=""><i class="fa fa-shield"></i>One</a></li>
+				<li><a href=""><i class="fa fa-shield"></i>Two</a></li>
+				<li><a href=""><i class="fa fa-shield"></i>Three</a></li>
+				<li><a href=""><i class="fa fa-shield"></i>Four</a></li>
+				<li><a href=""><i class="fa fa-shield"></i>Five</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- Vendor Scripts -->
+	<script type="text/javascript" src="./bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="./bower_components/uikit/js/uikit.min.js"></script>
+	<script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="./bower_components/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="./bower_components/motion-ui/dist/motion-ui.min.js"></script>
+
+
+	<!-- Include Main App Script -->
+	<script type="text/javascript" src="./app.js"></script>
+
+	<!-- Controllers -->
+	<script type="text/javascript" src="controllers/home.js"></script>
+	<script type="text/javascript" src="controllers/users.js"></script>
+
+</body>
+</html>

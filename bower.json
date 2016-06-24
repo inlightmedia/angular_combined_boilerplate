@@ -1,0 +1,31 @@
+{
+  "name": "my-app",
+  "authors": [
+    "Joshua Dyck <josh.dyck@inlightmedia.ca>"
+  ],
+  "description": "User Auth Boilerplate",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.6.3",
+    "foundation-icons": "*",
+    "bootstrap": "^3.3.6",
+    "uikit": "^2.26.3",
+    "angular": "^1.5.6",
+    "angular-route": "^1.5.6",
+    "motion-ui": "^1.2.2",
+    "Ionicons": "ionicons#^2.0.1",
+    "foundation-sites": "^6.2.3",
+    "foundation-apps": "^1.2.0",
+    "fastclick": "^1.0.6"
+  }
+}
