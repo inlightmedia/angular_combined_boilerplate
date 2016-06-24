@@ -26,6 +26,7 @@
     "Ionicons": "ionicons#^2.0.1",
     "foundation-sites": "^6.2.3",
     "foundation-apps": "^1.2.0",
-    "fastclick": "^1.0.6"
+    "fastclick": "^1.0.6",
+    "angular-material": "^1.0.9"
   }
 }

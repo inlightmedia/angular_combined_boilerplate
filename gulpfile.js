@@ -10,6 +10,7 @@ var browserSync = require('browser-sync').create();
 var babel = require('gulp-babel');
 var useref = require('gulp-useref');
 var gulpIf = require('gulp-if');
+var cssnano = require('gulp-cssnano'); 
 
 // // Handlebars Plugins
 // var handlebars = require('gulp-handlebars');
@@ -24,7 +25,8 @@ var gulpIf = require('gulp-if');
  var SCSS_PATH = './public/scss/**/*.scss';
  var SERVER_ROOT = './public';
  var HTML_PATH = './**/*.html';
- var TEMPLATES_PATH = './templates/**/*.hbr';
+//  var TEMPLATES_PATH = './templates/**/*.hbr';
+ var TPL_PATH = './components/**/*.html'
 
 // Spin up browser-sync server.
 gulp.task('browserSync', function() {
@@ -54,7 +56,7 @@ gulp.task('browserSync', function() {
 // });
 
 // Styles for SCSS
-gulp.task('styles', function(){
+gulp.task('scss', function(){
     console.log('Starting Styles Task');
     return gulp.src('./public/scss/styles.scss')
         .pipe(plumber(function(err){
@@ -90,6 +92,7 @@ gulp.task('useref', function(){
     .pipe(useref())
     // Minifies only if it's a JavaScript file
     .pipe(gulpIf('*.js', uglify()))
+    .pipe(gulpIf('*.css', cssnano()))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(DIST_PATH))
 });
@@ -145,8 +148,17 @@ gulp.task('images', function(){
 //         }));  
 // });
 
+// HTML
+gulp.task('templates', function () {
+    gulp.src(TPL_PATH) 
+        .pipe(gulp.dest(DIST_PATH + '/templates'))
+        .pipe(browserSync.reload({
+            stream: true
+        }));
+})
+
 // Default
-gulp.task('default', ['images', 'styles', 'useref'], function(){
+gulp.task('default', ['images', 'templates', 'scss', 'useref'], function(){
     console.log('Runing Default Task');
 });
 
@@ -159,7 +171,8 @@ gulp.task('watch', ['browserSync', 'default'], function(){
     // Says which folder to watch and which tasks to run when there are changes
     gulp.watch(SCRIPTS_PATH, ['useref']);
     // gulp.watch(CSS_PATH, ['styles']);
-    gulp.watch(SCSS_PATH, ['styles']);
+    gulp.watch(SCSS_PATH, ['scss']);
+    gulp.watch(TPL_PATH, ['templates']);
     // gulp.watch(TEMPLATES_PATH, ['templates']);
     gulp.watch(HTML_PATH, browserSync.reload); // runs no task so it just reloads with no task
 });

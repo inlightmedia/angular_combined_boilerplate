@@ -8,8 +8,7 @@ angular
         // Gets rid of hash in single page app.
         $locationProvider.html5Mode(true).hashPrefix('*');
 
-        // Setup Routing
-        
+        // Setup Routing        
         // Default routing to home page
         $urlRouterProvider.otherwise('/home');                        
         
