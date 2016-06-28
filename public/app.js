@@ -1,12 +1,14 @@
 "use strict"
 
 angular
-    .module('app', ['application', 'ngMaterial', 'ui.router'])
+    .module('app', ['ngMaterial', 'ui.router']) //'application', 
     
     .config(function($provide, $locationProvider, $urlRouterProvider, $stateProvider, $httpProvider){
         
-        // Gets rid of hash in single page app.
-        $locationProvider.html5Mode(true).hashPrefix('*');
+        // Gets rid of hash in single page app. Not working        
+        // $locationProvider.html5Mode({
+        //     enabled: true
+        // });
 
         // Setup Routing        
         // Default routing to home page

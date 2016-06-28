@@ -11,6 +11,7 @@ var babel = require('gulp-babel');
 var useref = require('gulp-useref');
 var gulpIf = require('gulp-if');
 var cssnano = require('gulp-cssnano'); 
+var lazypipe = require('lazypipe');
 
 // // Handlebars Plugins
 // var handlebars = require('gulp-handlebars');
@@ -19,14 +20,13 @@ var cssnano = require('gulp-cssnano');
 // var wrap = require('gulp-wrap');
 
 // File Paths
- var DIST_PATH = './public/dist';
- var SCRIPTS_PATH = './public/scripts/**/*.js';
- var CSS_PATH = './public/stylesheets/**/*.css';
- var SCSS_PATH = './public/scss/**/*.scss';
- var SERVER_ROOT = './public';
- var HTML_PATH = './**/*.html';
-//  var TEMPLATES_PATH = './templates/**/*.hbr';
- var TPL_PATH = './components/**/*.html'
+ var DIST_PATH = 'public/dist';
+ var SCRIPTS_PATH = 'public/scripts/**/*.js';
+ var CSS_PATH = 'public/stylesheets/**/*.css';
+ var SCSS_PATH = 'public/scss/**/*.scss';
+ var SERVER_ROOT = 'public';
+ var HTML_PATH = '**/*.html';
+ var TPL_PATH = 'components/**/*.html'
 
 // Spin up browser-sync server.
 gulp.task('browserSync', function() {
@@ -77,99 +77,61 @@ gulp.task('scss', function(){
         }));
 });
 
-gulp.task('useref', function(){
-  return gulp.src('public/*.html')
-    // Plumber prevents breaking changes from crashing the server
-    .pipe(plumber(function(err){
-        console.log('Scripts Task Error: ');
-        console.log(err);
-        this.emit('end');
-    }))
-    .pipe(sourcemaps.init())
-    // .pipe(babel({
-    //     'presets': ['es2015']
-    // }))
-    .pipe(useref())
-    // Minifies only if it's a JavaScript file
-    .pipe(gulpIf('*.js', uglify()))
-    .pipe(gulpIf('*.css', cssnano()))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(DIST_PATH))
+// Scripts
+gulp.task('scripts', function(){
+    console.log('Runing Scripts Task');
+    return gulp.src(['./public/bower_components/jquery/dist/jquery.min.js', './public/bower_components/angular/angular.js', SCRIPTS_PATH])
+        // Plumber prevents breaking changes from crashing the server
+        .pipe(plumber(function(err){
+            console.log('Scripts Task Error: ');
+            console.log(err);
+            this.emit('end');
+        }))
+        // Shows original files to sourcemaps plugin
+        .pipe(sourcemaps.init())
+        .pipe(babel({
+            'presets': ['es2015'],
+            compact: true
+        }))
+        .pipe(uglify())
+        .pipe(concat('scripts.js'))
+        // Shows altered files to sourcemap plugin
+        .pipe(sourcemaps.write())
+        // Tell gulp where to put files once changed
+        .pipe(gulp.dest(DIST_PATH))        
+        // Reloads public server resources in browser on changes 
+        .pipe(browserSync.reload({
+            stream: true
+        }));    
 });
-
-// // Scripts
-// gulp.task('scripts', function(){
-//     console.log('Runing Scripts Task');
-//     return gulp.src(SCRIPTS_PATH)
-//         // Plumber prevents breaking changes from crashing the server
-//         .pipe(plumber(function(err){
-//             console.log('Scripts Task Error: ');
-//             console.log(err);
-//             this.emit('end');
-//         }))
-//         // Shows original files to sourcemaps plugin
-//         .pipe(sourcemaps.init())
-//         .pipe(babel({
-//             'presets': ['es2015']
-//         }))
-//         .pipe(uglify())
-//         .pipe(concat('scripts.js'))
-//         // Shows altered files to sourcemap plugin
-//         .pipe(sourcemaps.write())
-//         // Tell gulp where to put files once changed
-//         .pipe(gulp.dest(DIST_PATH))
-        
-//         // Reloads public server resources in browser on changes 
-//         .pipe(browserSync.reload({
-//             stream: true
-//         }));    
-// });
 
 // Images
 gulp.task('images', function(){
     console.log('Runing Images Task');
 });
 
-// // Templates Task
-// gulp.task('templates', function () {
-//     gulp.src(TEMPLATES_PATH)
-//         .pipe(handlebars({
-//             handlebars: handlebarsLib
-//         }))
-//         .pipe(wrap('Handlebars.template(<%= contents %>)'))
-//         .pipe(declare({
-//             namespace: 'templates',
-//             noRedeclare: true
-//         }))
-//         .pipe(concat('templates.js'))
-//         .pipe(gulp.dest(DIST_PATH))
-//         .pipe(browserSync.reload({
-//             stream: true
-//         }));  
-// });
-
 // HTML
 gulp.task('templates', function () {
-    gulp.src(TPL_PATH) 
-        .pipe(gulp.dest(DIST_PATH + '/templates'))
+    return gulp.src(TPL_PATH) 
+        .pipe(gulp.dest('./public/dist/templates'))
         .pipe(browserSync.reload({
             stream: true
         }));
-})
+});
 
 // Default
-gulp.task('default', ['images', 'templates', 'scss', 'useref'], function(){
+gulp.task('default', ['images', 'templates', 'scss', 'scripts'], function(){
     console.log('Runing Default Task');
 });
 
 // Watch 
-// Watches for changes and restarts the server and re-runs the tasks
-// Makes sure browserSync server is up before watching file for changes
-// Then Makes sure styles SCSS has compiled before watching as well    
+    // Watches for changes and restarts the server and re-runs the tasks
+    // Makes sure browserSync server is up before watching file for changes
+    // Then Makes sure styles SCSS has compiled before watching as well    
 gulp.task('watch', ['browserSync', 'default'], function(){
     console.log('Starting gulp watch task.');    
     // Says which folder to watch and which tasks to run when there are changes
-    gulp.watch(SCRIPTS_PATH, ['useref']);
+    gulp.watch(SCRIPTS_PATH, ['scripts']);
     // gulp.watch(CSS_PATH, ['styles']);
     gulp.watch(SCSS_PATH, ['scss']);
     gulp.watch(TPL_PATH, ['templates']);
